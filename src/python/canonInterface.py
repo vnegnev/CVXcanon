@@ -1,18 +1,3 @@
-"""
-Copyright 2017 Steven Diamond
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-"""
 #    This file is part of CVXcanon.
 #
 #    CVXcanon is free software: you can redistribute it and/or modify
@@ -133,7 +118,7 @@ def set_slice_data(linC, linPy):
     '''
     for i, sl in enumerate(linPy.data):
         vec = CVXcanon.IntVector()
-        arg_dim = linPy.args[0].shape[i]
+        arg_dim = linPy.args[0].size[i]
 
         if sl.step is not None:
             step = sl.step
@@ -234,8 +219,8 @@ def build_lin_op_tree(root_linPy, tmp):
         linC.type = get_type(linPy.type.upper())
 
         # Setting size
-        linC.size.push_back(int(linPy.shape[0]))
-        linC.size.push_back(int(linPy.shape[1]))
+        linC.size.push_back(int(linPy.size[0]))
+        linC.size.push_back(int(linPy.size[1]))
 
         # Loading the problem data into the appropriate array format
         if linPy.data is None:
